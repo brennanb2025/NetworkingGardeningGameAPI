@@ -1,0 +1,7 @@
+#spring:
+#  datasource:
+#    jdbc-url: jdbc:mysql://blahblah.us-east-2.rds.amazonaws.com:3306/nameofdbhere
+#    username: admin
+#    password: password_here # bad to have directly in here, should change eventually
+#    hikari:
+#      maximum-pool-size: 10
