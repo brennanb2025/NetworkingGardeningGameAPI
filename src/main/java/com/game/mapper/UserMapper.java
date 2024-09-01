@@ -19,7 +19,7 @@ public interface UserMapper {
     @Update("update users " +
             "set email=#{email}, lastName=#{lastName}, firstName=#{firstName}, " +
             "where id=#{id}")
-    void updateUser(int id, String email, String lastName, String firstName);
+    int updateUser(int id, String email, String lastName, String firstName);
 
 
     @Select("select * from users where id = #{id}")

@@ -22,8 +22,8 @@ public class UserDao {
         userMapper.createUser(email, lastName, firstName);
     }
 
-    public void updateUser(int id, String email, String lastName, String firstName){
-        userMapper.updateUser(id, email, lastName, firstName);
+    public int updateUser(int id, String email, String lastName, String firstName){
+        return userMapper.updateUser(id, email, lastName, firstName);
     }
 
     public User getUserById(int id){

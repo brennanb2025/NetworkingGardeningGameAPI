@@ -1,14 +1,16 @@
-DROP TABLE special_outreach;
-DROP TABLE outreach;
-DROP TABLE plants;
-DROP TABLE plants_config;
-DROP TABLE users;
+DROP TABLE IF EXISTS special_outreach_completion_records; -- depends on special_outreach
+DROP TABLE IF EXISTS special_outreach; -- depends on plants and users
+DROP TABLE IF EXISTS outreach; -- depends on plants and users
+DROP TABLE IF EXISTS plants; -- depends on users and plants_config
+DROP TABLE IF EXISTS plants_config; -- no dependencies
+DROP TABLE IF EXISTS users; -- no dependencies
 
 CREATE TABLE IF NOT EXISTS users (
      id BIGINT AUTO_INCREMENT PRIMARY KEY,
      email VARCHAR(255) NOT NULL,
      lastname VARCHAR(255),
-     firstname VARCHAR(255)
+     firstname VARCHAR(255),
+     creationDatetime DATETIME DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE IF NOT EXISTS plants_config (
@@ -49,7 +51,6 @@ CREATE TABLE IF NOT EXISTS special_outreach (
     FOREIGN KEY (plantId) REFERENCES plants(id)
 );
 
--- outreach = list of past outreaches
 CREATE TABLE IF NOT EXISTS special_outreach_completion_records (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     specialOutreachId BIGINT NOT NULL,
@@ -89,9 +90,9 @@ INSERT INTO plants (
 );
 
 INSERT INTO special_outreach (
-    userId, plantId, notes, outreachTime
+    userId, plantId, notes, outreachTime, completed
 ) values (
-    1, 1, 'Notes about why to outreach here', CURRENT_DATE
+    1, 1, 'Notes about why to outreach here', CURRENT_DATE, false
 );
 
 INSERT INTO outreach (

@@ -3,16 +3,15 @@ package com.game.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class User {
-
+public class SpecialOutreachCompletionRecord {
     long id;
-    String email;
-    String lastName;
-    String firstName;
+    long specialOutreachId;
     LocalDate creationDatetime;
+    String notes;
 }

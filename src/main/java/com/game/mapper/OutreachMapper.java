@@ -3,9 +3,10 @@ package com.game.mapper;
 
 import com.game.entity.Outreach;
 import com.game.entity.SpecialOutreach;
+import com.game.entity.SpecialOutreachCompletionRecord;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
@@ -22,16 +23,23 @@ public interface OutreachMapper {
             "LIMIT 1") // TODO: top 1?
     Outreach getLastOutreach(@Param("plantId") long plantId);
 
+    @Select("SELECT socr.* " +
+            "FROM special_outreach_completion_records socr " +
+            "JOIN special_outreach so ON socr.specialOutreachId = so.id " +
+            "ORDER BY socr.creationDatetime DESC " +
+            "LIMIT 1") // TODO: top 1?
+    SpecialOutreachCompletionRecord getLastSpecialOutreachCompletionRecordByPlantId(@Param("plantId") long plantId);
+
     @Update("update plants set nextOutreachTime=#{nextOutreachTime} where id=#{id}")
     void updatePlantNextOutreachTime(@Param("id") long id,
-                                     @Param("nextOutreachTime") Date nextOutreachTime);
+                                     @Param("nextOutreachTime") LocalDate nextOutreachTime);
 
     @Insert("INSERT INTO special_outreach (userId, plantId, notes, outreachTime) " +
             "values (#{userId}, #{plantId}, #{notes}, #{outreachTime})")
     void addSpecialOutreach(@Param("userId") long userId,
                             @Param("plantId") long plantId,
                             @Param("notes") String notes,
-                            @Param("outreachTime") Date outreachTime);
+                            @Param("outreachTime") LocalDate outreachTime);
 
     // TODO: fix this
     @Delete("DELETE FROM special_outreach where id=#{id}")
@@ -45,6 +53,7 @@ public interface OutreachMapper {
             "ORDER BY outreachTime ASC " +
             "LIMIT 1") // TODO: top 1?
     SpecialOutreach getNextSpecialOutreachByPlantId(@Param("plantId") long plantId);
+
 
     @Insert("insert into special_outreach_completion_records (specialOutreachId, notes) " +
             "values (#{specialOutreachId}, #{notes})")

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,7 +26,7 @@ public class PlantController {
                          @RequestParam("name") String name,
                          @RequestParam("notes") String notes,
                          @RequestParam("outreachDurationDays") int outreachDurationDays,
-                         @RequestParam("nextOutreachTime") Date nextOutreachTime,
+                         @RequestParam("nextOutreachTime") LocalDate nextOutreachTime,
                          @RequestParam("stage") short stage,
                          @RequestParam("xCoord") int xCoord,
                          @RequestParam("yCoord") int yCoord) {
@@ -45,17 +45,17 @@ public class PlantController {
     }
 
     @PutMapping("/updateplantinfo")
-    public void updatePlantInfo(@RequestParam("id") long id,
+    public boolean updatePlantInfo(@RequestParam("id") long id,
                                 @RequestParam("name") String name,
                                 @RequestParam("notes") String notes) {
-        plantService.updatePlantInfo(id, name, notes);
+        return plantService.updatePlantInfo(id, name, notes);
     }
 
     @PutMapping("/updateplantoutreachdurationdays")
-    public void updatePlantOutreachDurationDays(
+    public boolean updatePlantOutreachDurationDays(
             @RequestParam("id") long id,
             @RequestParam("outreachDurationDays") int outreachDurationDays) {
-        plantService.updatePlantOutreachData(id, outreachDurationDays);
+        return plantService.updatePlantOutreachData(id, outreachDurationDays);
     }
 
     @PutMapping("/updateplantcoordinates")

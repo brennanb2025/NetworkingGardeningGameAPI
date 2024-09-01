@@ -30,22 +30,16 @@ public class UserController {
 
     // add user
     @PostMapping("/createuser")
-    public ResponseEntity<String> createUser(@RequestParam("email") String email, @RequestParam("lastname") String lastName,
+    public void createUser(@RequestParam("email") String email, @RequestParam("lastname") String lastName,
                         @RequestParam("firstname") String firstName){
-        try {
-            userService.createUser(email, lastName, firstName);
-            return ResponseEntity.ok().build(); // Return 200 OK if successful
-        } catch(IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error creating user: " + e.getMessage());
-        }
+        userService.createUser(email, lastName, firstName);
     }
 
     // update user
     @PutMapping("/updateuser")
-    public void updateUser(@RequestParam("userid") int id, @RequestParam("email") String email,
+    public boolean updateUser(@RequestParam("userid") int id, @RequestParam("email") String email,
                            @RequestParam("lastname") String lastName, @RequestParam("firstname") String firstName){
-        userService.updateUser(id, email, lastName, firstName);
+        return userService.updateUser(id, email, lastName, firstName);
     }
 
     // get user by id

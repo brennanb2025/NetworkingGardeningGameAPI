@@ -4,7 +4,7 @@ package com.game.mapper;
 import com.game.entity.Plant;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Mapper
@@ -15,7 +15,7 @@ public interface PlantMapper {
             "values (#{userId}, #{plantType}, #{name}, #{notes}, #{outreachDurationDays}, " +
             "#{nextOutreachTime}, #{stage}, #{xCoord}, #{yCoord})")
     void addPlant(long userId, int plantType, String name, String notes, int outreachDurationDays,
-                  Date nextOutreachTime, short stage, int xCoord, int yCoord);
+                  LocalDate nextOutreachTime, short stage, int xCoord, int yCoord);
 
     // DESC = earliest outreach first
     @Select("SELECT * FROM plants WHERE userId = #{userId} ORDER BY nextOutreachTime ASC")
@@ -51,26 +51,26 @@ public interface PlantMapper {
     Plant getPlantById(@Param("id") long id);
 
     @Update("UPDATE plants set name=#{name}, notes=#{notes} where id=#{id}")
-    void updatePlantInfo(@Param("id") long id,
+    int updatePlantInfo(@Param("id") long id,
                          @Param("name") String name,
                          @Param("notes") String notes);
 
     // these will always be updated together
     @Update("UPDATE plants set outreachDurationDays=#{outreachDurationDays}, " +
             "nextOutreachTime=#{nextOutreachTime} where id=#{id}")
-    void updatePlantOutreachData(@Param("id") long id,
+    int updatePlantOutreachData(@Param("id") long id,
                          @Param("outreachDurationDays") int outreachDurationDays,
-                         @Param("nextOutreachTime") Date nextOutreachTime);
+                         @Param("nextOutreachTime") LocalDate nextOutreachTime);
 
     // separate for coords - check if valid
     @Update("UPDATE plants set xCoord=#{x}, yCoord=#{y} where id=#{id}")
-    void updatePlantCoordinates(@Param("id") long id, @Param("x") int x, @Param("y") int y);
+    int updatePlantCoordinates(@Param("id") long id, @Param("x") int x, @Param("y") int y);
 
     // separate for plant type - check if valid
     @Update("UPDATE plants set plantType=#{plantType}, " +
             "xCoord=#{x}, yCoord=#{y} " +
             "where id=#{id}")
-    void updatePlantTypeAndCoordinates(@Param("id") long id,
+    int updatePlantTypeAndCoordinates(@Param("id") long id,
                                        @Param("plantType") int plantType,
                                        @Param("x") int x,
                                        @Param("y") int y);

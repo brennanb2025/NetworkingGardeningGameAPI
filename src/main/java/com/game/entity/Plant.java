@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,9 +16,9 @@ public class Plant {
     String name;
     String notes;
     int outreachDurationDays;
-    Date nextOutreachTime;
+    LocalDate nextOutreachTime;
     short stage; // stage of growth the plant is in (1, 2, 3)
     int xCoord;
     int yCoord;
-    Date creationDatetime;
+    LocalDate creationDatetime;
 }

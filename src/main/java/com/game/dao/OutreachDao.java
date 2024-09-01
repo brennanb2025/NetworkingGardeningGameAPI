@@ -2,11 +2,12 @@ package com.game.dao;
 
 import com.game.entity.Outreach;
 import com.game.entity.SpecialOutreach;
+import com.game.entity.SpecialOutreachCompletionRecord;
 import com.game.mapper.OutreachMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class OutreachDao {
     @Autowired
     OutreachMapper outreachMapper;
 
-    public void updatePlantNextOutreachTime(long id, Date nextOutreachTime) {
+    public void updatePlantNextOutreachTime(long id, LocalDate nextOutreachTime) {
         outreachMapper.updatePlantNextOutreachTime(id, nextOutreachTime);
     }
 
@@ -28,7 +29,7 @@ public class OutreachDao {
         return outreachMapper.getLastOutreach(plantId);
     }
 
-    public void addSpecialOutreach(long userId, long plantId, String notes, Date outreachTime) {
+    public void addSpecialOutreach(long userId, long plantId, String notes, LocalDate outreachTime) {
         outreachMapper.addSpecialOutreach(userId, plantId, notes, outreachTime);
     }
 
@@ -46,6 +47,10 @@ public class OutreachDao {
 
     public SpecialOutreach getNextSpecialOutreachByPlantId(long plantId) {
         return outreachMapper.getNextSpecialOutreachByPlantId(plantId);
+    }
+
+    public SpecialOutreachCompletionRecord getLastSpecialOutreachCompletionRecordByPlantId(long plantId) {
+        return outreachMapper.getLastSpecialOutreachCompletionRecordByPlantId(plantId);
     }
 
     public void setSpecialOutreachAsCompleted(long id) {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -35,7 +35,7 @@ public class OutreachController {
     public void addSpecialOutreach(@RequestParam("userId") long userId,
                                    @RequestParam("plantId") long plantId,
                                    @RequestParam("notes") String notes,
-                                   @RequestParam("outreachTime") Date outreachTime) {
+                                   @RequestParam("outreachTime") LocalDate outreachTime) {
         outreachService.addSpecialOutreach(userId, plantId, notes, outreachTime);
     }
 

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,7 +13,7 @@ public class Outreach {
     long id;
     long plantId;
     long userId;
-    Date creationDatetime;
+    LocalDate creationDatetime;
     String contents;
 }
 
