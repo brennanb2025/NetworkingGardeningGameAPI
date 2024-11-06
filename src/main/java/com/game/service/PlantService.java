@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,10 +34,20 @@ public class PlantService {
         return plantDao.getPlantById(id);
     }
 
-    public void addPlant(long userid, int plantType, String name, String notes, int outreachDurationDays,
+    public long addPlant(long userid, int plantType, String name, String notes, int outreachDurationDays,
                          LocalDate nextOutreachTime, short stage, int xCoord, int yCoord) {
-        plantDao.addPlant(userid, plantType, name, notes, outreachDurationDays,
-                nextOutreachTime, stage, xCoord, yCoord);
+        Plant plant = new Plant(
+                0,
+                userid,
+                plantType,
+                name,
+                notes,
+                outreachDurationDays,
+                nextOutreachTime,
+                stage,
+                xCoord,
+                yCoord);
+        return plantDao.addPlant(plant);
     }
 
     public boolean updatePlantInfo(long id, String name, String notes) {
@@ -87,18 +98,16 @@ public class PlantService {
         }
 
         if(latestOutreach == null) {
-            if(nextSpecialOutreachTime == null) {
-                return plantDao.updatePlantOutreachData(
-                        id,
-                        outreachDurationDays,
-                        thisPlant.getNextOutreachTime()
-                        // both are null: leave it unchanged
-                        // (user initially set it as that)
-                ) == 1;
-            } else {
-                // nextSpecialOutreachTime != null
-                return plantDao.updatePlantOutreachData(id, outreachDurationDays, nextSpecialOutreachTime) == 1;
-            }
+            // if latest outreach == null and next special outreach time != null, the next outreach time
+            // will be already set to the next special outreach time.
+            // So we can update to getNextOutreachTime regardless of whether nextSpecialOutreachTime is null.
+            return plantDao.updatePlantOutreachData(
+                    id,
+                    outreachDurationDays,
+                    thisPlant.getNextOutreachTime()
+                    // both are null: leave it unchanged
+                    // (user initially set it as that)
+            ) == 1;
         } else {
             // latestOutreach != null
             if(nextSpecialOutreachTime == null) {
@@ -183,6 +192,20 @@ public class PlantService {
 
         // use userId to get all of the user's other plants
         // ignore the plant with the same id as plantGridData.id
+
+        List<Plant> otherPlants = getPlantsByUserId(userId);
+        List<PlantGridData> otherPlantGridData = new ArrayList<PlantGridData>();
+        for(Plant p : otherPlants) {
+            otherPlantGridData.add(new PlantGridData(
+                    p.getId(),
+                    p.getXCoord(),
+                    p.getYCoord(),
+                    p.getPlantType(),
+                    3,
+                    3 // TODO: add config singleton
+            ));
+        }
+
         return true;
     }
 }

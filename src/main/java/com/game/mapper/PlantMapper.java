@@ -14,8 +14,8 @@ public interface PlantMapper {
             "nextOutreachTime, stage, xCoord, yCoord) " +
             "values (#{userId}, #{plantType}, #{name}, #{notes}, #{outreachDurationDays}, " +
             "#{nextOutreachTime}, #{stage}, #{xCoord}, #{yCoord})")
-    void addPlant(long userId, int plantType, String name, String notes, int outreachDurationDays,
-                  LocalDate nextOutreachTime, short stage, int xCoord, int yCoord);
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void addPlant(Plant plant);
 
     // DESC = earliest outreach first
     @Select("SELECT * FROM plants WHERE userId = #{userId} ORDER BY nextOutreachTime ASC")

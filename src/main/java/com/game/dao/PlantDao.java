@@ -18,10 +18,9 @@ public class PlantDao {
 
     public Plant getPlantById(long id) { return plantMapper.getPlantById(id); }
 
-    public void addPlant(long userid, int plantType, String name, String notes, int outreachDurationDays,
-                         LocalDate nextOutreachTime, short stage, int xCoord, int yCoord) {
-        plantMapper.addPlant(userid, plantType, name, notes, outreachDurationDays,
-                nextOutreachTime, stage, xCoord, yCoord);
+    public long addPlant(Plant plant) {
+        plantMapper.addPlant(plant);
+        return plant.getId();
     }
 
     public int updatePlantInfo(long id, String name, String notes) {

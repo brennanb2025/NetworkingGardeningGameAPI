@@ -75,8 +75,30 @@ INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLas
 INSERT INTO plants_config (
     name, notes, approxOutreachDurationDays, width, height
 ) values (
-    'Prickly Pear Cactus', 'Info about the plant here', 20, 3, 3
+             'Prickly Pear Cactus', 'Info about the cactus here', 365, 3, 3
 );
+INSERT INTO plants_config (
+    name, notes, approxOutreachDurationDays, width, height
+) values (
+             'Redwood', 'Info about the redwood here', 40, 5, 5
+);
+INSERT INTO plants_config (
+    name, notes, approxOutreachDurationDays, width, height
+) values (
+             'Sunflower', 'Info about the sunflower here', 10, 1, 1
+);
+INSERT INTO plants_config (
+    name, notes, approxOutreachDurationDays, width, height
+) values (
+             'Strawberry', 'Info about the strawberry here', 5, 1, 1
+);
+INSERT INTO plants_config (
+    name, notes, approxOutreachDurationDays, width, height
+) values (
+             'Sequoia', 'Info about the sequoia here', 100, 7, 7
+);
+
+/*
 
 INSERT INTO plants (
     userId, plantType, name, notes, outreachDurationDays, nextOutreachTime, stage, xCoord, yCoord
@@ -100,3 +122,4 @@ INSERT INTO outreach (
 ) values (
     1, 1, 'Here is what I said last outreach blah blah'
 );
+*/

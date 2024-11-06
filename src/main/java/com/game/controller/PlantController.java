@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -21,16 +22,16 @@ public class PlantController {
     PlantService plantService;
 
     @PostMapping("/addplant")
-    public void addPlant(@RequestParam("userId") long userid,
+    public long addPlant(@RequestParam("userId") long userid,
                          @RequestParam("plantType") int plantType,
                          @RequestParam("name") String name,
                          @RequestParam("notes") String notes,
                          @RequestParam("outreachDurationDays") int outreachDurationDays,
-                         @RequestParam("nextOutreachTime") LocalDate nextOutreachTime,
+                         @RequestParam("nextOutreachTime") @DateTimeFormat(pattern="MM-dd-yyyy") LocalDate nextOutreachTime,
                          @RequestParam("stage") short stage,
                          @RequestParam("xCoord") int xCoord,
                          @RequestParam("yCoord") int yCoord) {
-        plantService.addPlant(userid, plantType, name, notes, outreachDurationDays,
+        return plantService.addPlant(userid, plantType, name, notes, outreachDurationDays,
                 nextOutreachTime, stage, xCoord, yCoord);
     }
 

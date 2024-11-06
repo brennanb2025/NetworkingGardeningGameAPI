@@ -4226,3 +4226,78 @@ DROP TABLE IF EXISTS users [90107-214]
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1309)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1298)
 	at com.game.GameApplication.main(GameApplication.java:11)
+2024-09-05 08:03:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
+2024-09-05 08:03:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst')"; SQL statement:
+# INSERT INTO users (email, lastname, firstname) values ('test@test.com', 'testLast', 'testFirst') [42000-214]
