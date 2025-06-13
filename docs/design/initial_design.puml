@@ -1,0 +1,283 @@
+@startuml
+
+'Note: most of the fields in these classes that are of a type Service or Dao
+' use org.springframework.beans.factory.annotation.Autowired
+' which automatically puts the services (org.springframework.stereotype.Service)
+' and daos (import org.springframework.stereotype.Component), which can be thought of as
+' singletons, into the fields.
+
+package config{
+    class DataSourceConfig{
+        +dataSource(): DataSource
+    }
+    class GlobalCorsConfig{
+        +corsFilter(): CorsFilter
+    }
+}
+
+package controller{
+    class OutreachController{
+        ~outreachService: OutreachService
+
+        +addOutreach(userId: long, plantId: int, contents: String): void
+        +addSpecialOutreach(userId: long, plantId: long, notes: String, outreachTime: LocalDate): void
+        +deleteSpecialOutreach(id: long): void
+        +completeSpecialOutreach(specialOutreachId: long, notes: String): void
+        +getOutreachesByPlantId(plantId: long): List<Outreach>
+        +getSpecialOutreachesByPlantId(plantId: long): List<SpecialOutreach>
+    }
+
+    class PlantController {
+        ~plantService: PlantService
+
+        +addPlant(userid: long, plantType: int, name: String, notes: String, outreachDurationDays: int, nextOutreachTime: LocalDate, stage: short, xCoord: int, yCoord: int): long
+        +getPlantsByUserId(userid: long): List<Plant>
+        +getPlantById(id: long): Plant
+        +updatePlantInfo(id: long, name: String, notes: String): boolean
+        +updatePlantOutreachDurationDays(id: long, outreachDurationDays: int): boolean
+        +updatePlantCoordinates(id: long, x: int, y: int): boolean
+        +updatePlantTypeAndCoordinates(id: long, plantType: int, x: int, y: int): boolean
+    }
+
+    class UserController {
+        ~userService: UserService
+
+        +createUser(email: String, lastName: String, firstName: String): void
+        +updateUser(id: int, email: String, lastName: String, firstName: String): boolean
+        +getUserById(userid: int): User
+    }
+}
+
+
+
+controller.OutreachController ..> service.OutreachService
+controller.OutreachController ..> entity.Outreach
+controller.OutreachController ..> entity.SpecialOutreach
+
+controller.PlantController ..> service.PlantService
+controller.PlantController ..> entity.Plant
+
+controller.UserController ..> service.UserService
+controller.UserController ..> entity.User
+
+package dao{
+    class OutreachDao {
+        ~outreachMapper: OutreachMapper
+
+        +updatePlantNextOutreachTime(id: long, nextOutreachTime: LocalDate): void
+        +addOutreach(userId: long, plantId: long, contents: String): void
+        +getLastOutreach(plantId: long): Outreach
+        +addSpecialOutreach(userId: long, plantId: long, notes: String, outreachTime: LocalDate): void
+        +removeSpecialOutreachById(id: long): void
+        +addSpecialOutreachCompletionRecord(specialOutreachId: long, notes: String): void
+        +getSpecialOutreachById(id: long): SpecialOutreach
+        +getNextSpecialOutreachByPlantId(plantId: long): SpecialOutreach
+        +getLastSpecialOutreachCompletionRecordByPlantId(plantId: long): SpecialOutreachCompletionRecord
+        +setSpecialOutreachAsCompleted(id: long): void
+        +getOutreachesByPlantId(plantId: long): List<Outreach>
+        +getSpecialOutreachesByPlantId(plantId: long): List<SpecialOutreach>
+    }
+
+    class PlantDao {
+        ~plantMapper: PlantMapper
+
+        +getPlantsByUserId(id: long): List<Plant>
+        +getPlantById(id: long): Plant
+        +addPlant(plant: Plant): long
+        +updatePlantInfo(id: long, name: String, notes: String): int
+        +updatePlantOutreachData(id: long, outreachDurationDays: int, nextOutreachTime: LocalDate): int
+        +updatePlantCoordinates(id: long, x: int, y: int): int
+        +updatePlantTypeAndCoordinates(id: long, plantType: int, x: int, y: int): int
+    }
+
+    class UserDao {
+        ~userMapper: UserMapper
+
+        +createUser(email: String, lastName: String, firstName: String): void
+        +updateUser(id: int, email: String, lastName: String, firstName: String): int
+        +getUserById(id: int): User
+    }
+}
+
+dao.OutreachDao ..> mapper.OutreachMapper
+dao.OutreachDao ..> entity.Outreach
+dao.OutreachDao ..> entity.SpecialOutreach
+dao.OutreachDao ..> entity.SpecialOutreachCompletionRecord
+
+dao.PlantDao ..> mapper.PlantMapper
+dao.PlantDao ..> entity.Plant
+
+dao.UserDao ..> mapper.UserMapper
+dao.UserDao ..> entity.User
+
+
+
+package entity{
+    class Outreach {
+        -id: long
+        -plantId: long
+        -userId: long
+        -creationDatetime: LocalDate
+        -contents: String
+    }
+
+    class Plant {
+        -id: long
+        -userId: long
+        -plantType: int
+        -name: String
+        -notes: String
+        -outreachDurationDays: int
+        -nextOutreachTime: LocalDate
+        -stage: short
+        -xCoord: int
+        -yCoord: int
+        -creationDatetime: LocalDate
+
+        +Plant(id: long, userId: long, plantType: int, name: String, notes: String, outreachDurationDays: int, nextOutreachTime: LocalDate, stage: short, xCoord: int, yCoord: int)
+    }
+
+    class PlantGridData {
+        -id: long
+        -x: int
+        -y: int
+        -plantType: int
+        -width: int
+        -height: int
+    }
+
+    class SpecialOutreach {
+        -id: long
+        -plantId: long
+        -userId: long
+        -outreachTime: LocalDate
+        -notes: String
+        -completed: boolean
+    }
+
+    class SpecialOutreachCompletionRecord {
+        -id: long
+        -specialOutreachId: long
+        -creationDatetime: LocalDate
+        -notes: String
+    }
+
+    class User {
+        -id: long
+        -email: String
+        -lastName: String
+        -firstName: String
+        -creationDatetime: LocalDate
+    }
+}
+
+package mapper{
+    interface OutreachMapper {
+        +addOutreach(userId: long, plantId: long, contents: String): void
+        +getLastOutreach(plantId: long): Outreach
+        +getLastSpecialOutreachCompletionRecordByPlantId(plantId: long): SpecialOutreachCompletionRecord
+        +updatePlantNextOutreachTime(id: long, nextOutreachTime: LocalDate): void
+        +addSpecialOutreach(userId: long, plantId: long, notes: String, outreachTime: LocalDate): void
+        +deleteSpecialOutreachById(id: long): void
+        +getSpecialOutreachById(id: long): SpecialOutreach
+        +getNextSpecialOutreachByPlantId(plantId: long): SpecialOutreach
+        +addSpecialOutreachCompletionRecord(specialOutreachId: long, notes: String): void
+        +setSpecialOutreachAsCompleted(id: long): void
+        +getOutreachesByPlantId(plantId: long): List<Outreach>
+        +getSpecialOutreachesByPlantId(plantId: long): List<SpecialOutreach>
+    }
+
+    interface PlantMapper {
+        +addPlant(plant: Plant): void
+        +getPlantsByUserId(userId: long): List<Plant>
+        +getPlantById(id: long): Plant
+        +updatePlantInfo(id: long, name: String, notes: String): int
+        +updatePlantOutreachData(id: long, outreachDurationDays: int, nextOutreachTime: LocalDate): int
+        +updatePlantCoordinates(id: long, x: int, y: int): int
+        +updatePlantTypeAndCoordinates(id: long, plantType: int, x: int, y: int): int
+    }
+
+    interface UserMapper {
+        +createUser(email: String, lastName: String, firstName: String): void
+        +updateUser(id: int, email: String, lastName: String, firstName: String): int
+        +getUserById(id: int): User
+    }
+}
+
+mapper.OutreachMapper ..> entity.Outreach
+mapper.OutreachMapper ..> entity.SpecialOutreach
+mapper.OutreachMapper ..> entity.SpecialOutreachCompletionRecord
+
+mapper.OutreachMapper ..> entity.Outreach
+mapper.OutreachMapper ..> entity.SpecialOutreach
+mapper.OutreachMapper ..> entity.SpecialOutreachCompletionRecord
+mapper.PlantMapper ..> entity.Plant
+
+mapper.UserMapper ..> entity.User
+
+
+
+
+package service{
+
+    class OutreachService {
+        ~outreachDao: OutreachDao
+        ~userDao: UserDao
+        ~plantDao: PlantDao
+
+        -updateOutreachTime(plantId: long, nextOutreachTime: LocalDate): void
+        +addOutreach(userId: long, plantId: long, contents: String): void
+        +addSpecialOutreach(userId: long, plantId: long, notes: String, outreachTime: LocalDate): void
+        +deleteSpecialOutreachById(id: long): void
+        +addSpecialOutreachCompletionRecord(specialOutreachId: long, notes: String): void
+        +getOutreachesByPlantId(plantId: long): List<Outreach>
+        +getSpecialOutreachesByPlantId(plantId: long): List<SpecialOutreach>
+    }
+
+    class PlantService {
+        ~plantDao: PlantDao
+        ~outreachDao: OutreachDao
+
+        +getPlantsByUserId(id: long): List<Plant>
+        +getPlantById(id: long): Plant
+        +addPlant(userid: long, plantType: int, name: String, notes: String, outreachDurationDays: int, nextOutreachTime: LocalDate, stage: short, xCoord: int, yCoord: int): long
+        +updatePlantInfo(id: long, name: String, notes: String): boolean
+        +updatePlantOutreachData(id: long, outreachDurationDays: int): boolean
+        +updatePlantCoordinates(id: long, x: int, y: int): boolean
+        +updatePlantTypeAndCoordinates(id: long, plantType: int, x: int, y: int): boolean
+        -checkValidPositionDataForPlant(plantGridData: PlantGridData, userId: long): boolean
+    }
+
+    class UserService {
+        ~userDao: UserDao
+        +createUser(email: String, lastName: String, firstName: String): void
+        +updateUser(id: int, email: String, lastName: String, firstName: String): boolean
+        +getUserById(id: int): User
+    }
+}
+
+service.OutreachService ..> dao.OutreachDao
+service.OutreachService ..> dao.UserDao
+service.OutreachService ..> dao.PlantDao
+service.OutreachService ..> entity.Outreach
+service.OutreachService ..> entity.Plant
+service.OutreachService ..> entity.SpecialOutreach
+
+service.PlantService ..> dao.PlantDao
+service.PlantService ..> dao.OutreachDao
+service.PlantService ..> entity.Plant
+service.PlantService ..> entity.PlantGridData
+service.PlantService ..> entity.Outreach
+service.PlantService ..> entity.SpecialOutreach
+service.PlantService ..> entity.SpecialOutreachCompletionRecord
+
+service.UserService ..> dao.UserDao
+service.UserService ..> entity.User
+
+class GameApplication{
+    +{static} main(args: String[]): void
+}
+
+GameApplication ..> org.springframework.boot.SpringApplication
+
+@enduml

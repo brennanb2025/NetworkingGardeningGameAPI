@@ -2,13 +2,14 @@ package com.game.controller;
 
 import com.game.entity.Outreach;
 import com.game.entity.SpecialOutreach;
-import com.game.service.OutreachService;
+import com.game.service.outreach.OutreachService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,7 +58,14 @@ public class OutreachController {
     }
 
     @GetMapping("/getspecialoutreachesbyplantid")
-    public List<SpecialOutreach> getSpecialOutreachesByPlantId(long plantId) {
+    public List<SpecialOutreach> getSpecialOutreachesByPlantId(@RequestParam("plantId") long plantId) {
         return outreachService.getSpecialOutreachesByPlantId(plantId);
+    }
+
+    @PutMapping("/updateplantoutreachdurationdays")
+    public boolean updatePlantOutreachDurationDays(
+            @RequestParam("id") long id,
+            @RequestParam("outreachDurationDays") int outreachDurationDays) {
+        return outreachService.updatePlantOutreachData(id, outreachDurationDays);
     }
 }

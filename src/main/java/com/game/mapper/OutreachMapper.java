@@ -34,8 +34,8 @@ public interface OutreachMapper {
     void updatePlantNextOutreachTime(@Param("id") long id,
                                      @Param("nextOutreachTime") LocalDate nextOutreachTime);
 
-    @Insert("INSERT INTO special_outreach (userId, plantId, notes, outreachTime) " +
-            "values (#{userId}, #{plantId}, #{notes}, #{outreachTime})")
+    @Insert("INSERT INTO special_outreach (userId, plantId, notes, outreachTime, completed) " +
+            "values (#{userId}, #{plantId}, #{notes}, #{outreachTime}, false)")
     void addSpecialOutreach(@Param("userId") long userId,
                             @Param("plantId") long plantId,
                             @Param("notes") String notes,

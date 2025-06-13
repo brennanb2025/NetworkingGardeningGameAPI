@@ -1,7 +1,8 @@
 package com.game.controller;
 
 import com.game.entity.Plant;
-import com.game.service.PlantService;
+import com.game.service.plant.PlantService;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,13 +51,6 @@ public class PlantController {
                                 @RequestParam("name") String name,
                                 @RequestParam("notes") String notes) {
         return plantService.updatePlantInfo(id, name, notes);
-    }
-
-    @PutMapping("/updateplantoutreachdurationdays")
-    public boolean updatePlantOutreachDurationDays(
-            @RequestParam("id") long id,
-            @RequestParam("outreachDurationDays") int outreachDurationDays) {
-        return plantService.updatePlantOutreachData(id, outreachDurationDays);
     }
 
     @PutMapping("/updateplantcoordinates")
